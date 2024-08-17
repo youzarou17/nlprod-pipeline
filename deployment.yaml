@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+Kind: Deployment
+metadata:
+   name: nlprod-deploy
+spec:
+   replicas: 2
+   selector:
+     matchLabels:
+        app: nlprod-deploy-app
+  template:
+    metadata:
+      labels:
+        app: nlprod-deploy-app
+  spec:
+    containers:
+     - name: nlprod-deploy-app
+       image: devcloud/nlprod-deploy:CHANGEME
+       resources:
+         limits:
+           memory: "256Mi"
+           cpu: "500n"
+      ports:
+        - containerPort: 8080
